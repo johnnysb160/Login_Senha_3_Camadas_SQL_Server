@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Login_Senha_3_Camadas_SQL_Server.Modelo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,15 @@ namespace Login_Senha_3_Camadas_SQL_Server.Apresentacao
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCadastrar_Click(object sender, EventArgs e)
+        {
+            Controle controle = new Controle();
+            controle.Cadastro(txtLogin.Text, txtSenha.Text, txtConfirmar.Text);
+            Cadastrar cadastrar = new Cadastrar();
+            cadastrar.Close();
+            MessageBox.Show(controle.mensagem);
         }
     }
 }

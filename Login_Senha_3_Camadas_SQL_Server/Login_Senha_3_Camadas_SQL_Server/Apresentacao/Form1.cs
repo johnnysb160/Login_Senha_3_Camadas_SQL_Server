@@ -1,4 +1,5 @@
 ﻿using Login_Senha_3_Camadas_SQL_Server.Apresentacao;
+using Login_Senha_3_Camadas_SQL_Server.Modelo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +28,33 @@ namespace Login_Senha_3_Camadas_SQL_Server
         private void btnSair_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnEntrar_Click(object sender, EventArgs e)
+        {
+            
+            Controle controle = new Controle();
+            controle.acesso(txtLogin.Text, txtSenha.Text);
+            if (controle.mensagem.Equals(""))
+            {
+                if (controle.VerificarAcesso)
+                {
+                    MessageBox.Show("Logado com Sucesso", "Entrando", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    BemVindo bemvindo = new BemVindo();
+                    Form1 form1 = new Form1();
+                    form1.Close();
+                    bemvindo.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Login ou senha incorreto", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            else
+            {
+                MessageBox.Show(controle.mensagem);
+            }
         }
     }
 }
