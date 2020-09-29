@@ -25,6 +25,10 @@ namespace Login_Senha_3_Camadas_SQL_Server.Modelo
         public string Cadastro(string login, string senha, string confSenha)
         {
             this.mensagem = loginDaoComandos.Cadastrar(login, senha, confSenha);
+            if (loginDaoComandos.VerificaAcesso)
+            {
+                this.VerificarAcesso = true;
+            }
             return mensagem;
         }
     }

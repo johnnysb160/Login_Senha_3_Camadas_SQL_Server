@@ -42,8 +42,11 @@ namespace Login_Senha_3_Camadas_SQL_Server
                     MessageBox.Show("Logado com Sucesso", "Entrando", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BemVindo bemvindo = new BemVindo();
                     Form1 form1 = new Form1();
-                    form1.Close();
                     bemvindo.Show();
+                    bemvindo.lblloginEditar.Text = txtLogin.Text;
+                    bemvindo.txtLogin.Text = txtLogin.Text;
+                    bemvindo.txtSenha.Text = txtSenha.Text;
+                    bemvindo.txtConfirmar.Text = txtSenha.Text;
                 }
                 else
                 {

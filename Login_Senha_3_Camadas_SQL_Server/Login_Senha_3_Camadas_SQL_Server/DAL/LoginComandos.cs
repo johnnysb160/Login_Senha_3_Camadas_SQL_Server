@@ -40,6 +40,7 @@ namespace Login_Senha_3_Camadas_SQL_Server.DAL
 
         public string Cadastrar(string login, string senha, string confSenha)
         {
+            VerificaAcesso = false;
             if (senha.Equals(confSenha))
             {
                 cmd.CommandText = "INSERT INTO logins (login, senha) VALUES (@login, @senha)";
@@ -51,6 +52,7 @@ namespace Login_Senha_3_Camadas_SQL_Server.DAL
                     cmd.ExecuteNonQuery();
                     this.mensagem = "Cadastrado com sucesso";
                     conec.Desconectar();
+                    VerificaAcesso = true;
                 }
                 catch (SqlException)
                 {

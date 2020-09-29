@@ -70,6 +70,7 @@
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(169, 20);
             this.txtSenha.TabIndex = 4;
+            this.txtSenha.UseSystemPasswordChar = true;
             // 
             // lblSenha
             // 
@@ -86,6 +87,7 @@
             this.txtConfirmar.Name = "txtConfirmar";
             this.txtConfirmar.Size = new System.Drawing.Size(169, 20);
             this.txtConfirmar.TabIndex = 6;
+            this.txtConfirmar.UseSystemPasswordChar = true;
             // 
             // lblConfirmar
             // 
