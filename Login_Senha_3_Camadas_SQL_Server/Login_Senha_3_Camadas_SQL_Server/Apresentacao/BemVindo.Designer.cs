@@ -39,6 +39,8 @@
             this.btnSalvar = new System.Windows.Forms.Button();
             this.lblLogin = new System.Windows.Forms.Label();
             this.lblloginEditar = new System.Windows.Forms.Label();
+            this.lbl_Id_usuario = new System.Windows.Forms.Label();
+            this.btnVoltar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblBemVindo
@@ -63,11 +65,11 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(390, 188);
+            this.btnEditar.Location = new System.Drawing.Point(355, 188);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(46, 23);
+            this.btnEditar.Size = new System.Drawing.Size(81, 23);
             this.btnEditar.TabIndex = 2;
-            this.btnEditar.Text = "Editar";
+            this.btnEditar.Text = "Alterar Senha";
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
@@ -118,9 +120,9 @@
             // btnSalvar
             // 
             this.btnSalvar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSalvar.Location = new System.Drawing.Point(154, 266);
+            this.btnSalvar.Location = new System.Drawing.Point(137, 266);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(128, 23);
+            this.btnSalvar.Size = new System.Drawing.Size(70, 23);
             this.btnSalvar.TabIndex = 8;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
@@ -146,11 +148,33 @@
             this.lblloginEditar.Size = new System.Drawing.Size(0, 17);
             this.lblloginEditar.TabIndex = 14;
             // 
+            // lbl_Id_usuario
+            // 
+            this.lbl_Id_usuario.AutoSize = true;
+            this.lbl_Id_usuario.Location = new System.Drawing.Point(91, 119);
+            this.lbl_Id_usuario.Name = "lbl_Id_usuario";
+            this.lbl_Id_usuario.Size = new System.Drawing.Size(0, 13);
+            this.lbl_Id_usuario.TabIndex = 15;
+            // 
+            // btnVoltar
+            // 
+            this.btnVoltar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnVoltar.Location = new System.Drawing.Point(238, 266);
+            this.btnVoltar.Name = "btnVoltar";
+            this.btnVoltar.Size = new System.Drawing.Size(68, 23);
+            this.btnVoltar.TabIndex = 16;
+            this.btnVoltar.Text = "Voltar";
+            this.btnVoltar.UseVisualStyleBackColor = true;
+            this.btnVoltar.Visible = false;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            // 
             // BemVindo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 352);
+            this.Controls.Add(this.btnVoltar);
+            this.Controls.Add(this.lbl_Id_usuario);
             this.Controls.Add(this.lblloginEditar);
             this.Controls.Add(this.txtConfirmar);
             this.Controls.Add(this.lblConfirmar);
@@ -183,5 +207,7 @@
         public System.Windows.Forms.TextBox txtConfirmar;
         public System.Windows.Forms.TextBox txtSenha;
         public System.Windows.Forms.TextBox txtLogin;
+        public System.Windows.Forms.Label lbl_Id_usuario;
+        private System.Windows.Forms.Button btnVoltar;
     }
 }

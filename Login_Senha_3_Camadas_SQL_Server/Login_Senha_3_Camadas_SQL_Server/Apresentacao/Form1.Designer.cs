@@ -146,6 +146,7 @@
         private System.Windows.Forms.TextBox txtLogin;
         private System.Windows.Forms.TextBox txtSenha;
         private System.Windows.Forms.Button btnSair;
+        
     }
 }
 

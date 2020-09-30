@@ -1,4 +1,5 @@
 ﻿using Login_Senha_3_Camadas_SQL_Server.Apresentacao;
+using Login_Senha_3_Camadas_SQL_Server.DAL;
 using Login_Senha_3_Camadas_SQL_Server.Modelo;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,8 @@ namespace Login_Senha_3_Camadas_SQL_Server
         {
             
             Controle controle = new Controle();
-            controle.acesso(txtLogin.Text, txtSenha.Text);
+            LoginComandos loginComando = new LoginComandos();
+            controle.Acesso(txtLogin.Text, txtSenha.Text);
             if (controle.mensagem.Equals(""))
             {
                 if (controle.VerificarAcesso)

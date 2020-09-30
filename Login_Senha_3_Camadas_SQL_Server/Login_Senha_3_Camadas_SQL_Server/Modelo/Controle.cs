@@ -12,7 +12,7 @@ namespace Login_Senha_3_Camadas_SQL_Server.Modelo
         public bool VerificarAcesso;
         public string mensagem="";
         LoginComandos loginDaoComandos = new LoginComandos();
-        public bool acesso(string login, string senha)
+        public bool Acesso(string login, string senha)
         {
             VerificarAcesso = loginDaoComandos.VerificarLogin(login, senha);
             if (!loginDaoComandos.mensagem.Equals(""))
@@ -25,6 +25,15 @@ namespace Login_Senha_3_Camadas_SQL_Server.Modelo
         public string Cadastro(string login, string senha, string confSenha)
         {
             this.mensagem = loginDaoComandos.Cadastrar(login, senha, confSenha);
+            if (loginDaoComandos.VerificaAcesso)
+            {
+                this.VerificarAcesso = true;
+            }
+            return mensagem;
+        }
+        public string Editar(string login, string senha, string confSenha)
+        {
+            this.mensagem = loginDaoComandos.Editar(login, senha, confSenha);
             if (loginDaoComandos.VerificaAcesso)
             {
                 this.VerificarAcesso = true;
