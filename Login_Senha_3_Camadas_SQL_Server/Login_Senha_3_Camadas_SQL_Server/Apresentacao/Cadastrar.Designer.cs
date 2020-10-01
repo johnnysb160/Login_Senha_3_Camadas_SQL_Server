@@ -113,6 +113,8 @@
             this.Controls.Add(this.lblLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Cadastrar";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Cadastrar";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -123,10 +125,10 @@
 
         private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.Button btnCadastrar;
-        private System.Windows.Forms.TextBox txtLogin;
         private System.Windows.Forms.TextBox txtSenha;
         private System.Windows.Forms.Label lblSenha;
         private System.Windows.Forms.TextBox txtConfirmar;
         private System.Windows.Forms.Label lblConfirmar;
+        public System.Windows.Forms.TextBox txtLogin;
     }
 }

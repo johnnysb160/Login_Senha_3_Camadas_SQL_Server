@@ -23,9 +23,8 @@ namespace Login_Senha_3_Camadas_SQL_Server
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             Cadastrar cad = new Cadastrar();
-            cad.Show();
+            cad.ShowDialog();
         }
-
         private void btnSair_Click(object sender, EventArgs e)
         {
             Application.Exit();
