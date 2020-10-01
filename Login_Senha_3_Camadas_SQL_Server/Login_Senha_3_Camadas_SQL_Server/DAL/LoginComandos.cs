@@ -40,19 +40,100 @@ namespace Login_Senha_3_Camadas_SQL_Server.DAL
             return VerificaAcesso;
         }
 
-     public string Cadastrar(string login, string senha, string confSenha)
-    {
-        VerificaAcesso = false;
-        if (senha.Equals(confSenha))
+        public string Cadastrar(string login, string senha, string confSenha)
         {
-            cmd.CommandText = "INSERT INTO logins (login, senha) VALUES (@login, @senha)";
+            VerificaAcesso = false;
+            if (senha.Equals(confSenha))
+            {
+                cmd.CommandText = "INSERT INTO logins (login, senha) VALUES (@login, @senha)";
+                cmd.Parameters.AddWithValue("@login", login);
+                cmd.Parameters.AddWithValue("@senha", senha);
+                try
+                {
+                    cmd.Connection = conec.Conectar();
+                    cmd.ExecuteNonQuery();
+                    this.mensagem = "Cadastrado com sucesso";
+                    conec.Desconectar();
+                    VerificaAcesso = true;
+                }
+                catch (SqlException)
+                {
+
+                    this.mensagem = "Erro com o Banco de Dados";
+                }
+            }
+            else
+            {
+                this.mensagem = "Senhas diferentes";
+            }
+
+            return mensagem;
+        }
+
+        public string VerificaCadastro(string login)
+        {
+            VerificaAcesso = false;
+            cmd.CommandText = "SELECT * FROM logins WHERE login=@login";
             cmd.Parameters.AddWithValue("@login", login);
-            cmd.Parameters.AddWithValue("@senha", senha);
+            try
+            {
+                cmd.Connection = conec.Conectar();
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    VerificaAcesso = true;
+                    this.mensagem = "Login já cadastrado";
+                }
+                dr.Close();
+                conec.Desconectar();
+            }
+            catch (SqlException)
+            {
+
+                this.mensagem = "Erro com o Banco de Dadoooooos";
+            }
+            return mensagem;
+        }
+
+        public string Editar(string login, string senha, string confSenha)
+        {
+            VerificaAcesso = false;
+            if (senha.Equals(confSenha))
+            {
+                cmd.CommandText = "UPDATE logins SET senha=@senha WHERE login=@login";
+                cmd.Parameters.AddWithValue("@login", login);
+                cmd.Parameters.AddWithValue("@senha", senha);
+                try
+                {
+                    cmd.Connection = conec.Conectar();
+                    cmd.ExecuteNonQuery();
+                    this.mensagem = "Senha alterada com sucesso";
+                    conec.Desconectar();
+                    VerificaAcesso = true;
+                }
+                catch (SqlException)
+                {
+
+                    this.mensagem = "Erro com o Banco de Dados";
+                }
+            }
+            else
+            {
+                this.mensagem = "Senhas diferentes";
+            }
+
+            return mensagem;
+        }
+
+        public string Deletar(string login)
+        {
+            cmd.CommandText = "DELETE FROM logins WHERE login=@login";
+            cmd.Parameters.AddWithValue("@login", login);
             try
             {
                 cmd.Connection = conec.Conectar();
                 cmd.ExecuteNonQuery();
-                this.mensagem = "Cadastrado com sucesso";
+                this.mensagem = "Usuário deletado com sucesso";
                 conec.Desconectar();
                 VerificaAcesso = true;
             }
@@ -61,43 +142,7 @@ namespace Login_Senha_3_Camadas_SQL_Server.DAL
 
                 this.mensagem = "Erro com o Banco de Dados";
             }
+            return mensagem;
         }
-        else
-        {
-            this.mensagem = "Senhas diferentes";
-        }
-
-        return mensagem;
     }
-
-    public string Editar(string login, string senha, string confSenha)
-    {
-        VerificaAcesso = false;
-        if (senha.Equals(confSenha))
-        {
-            cmd.CommandText = "UPDATE logins SET senha=@senha WHERE login=@login";
-            cmd.Parameters.AddWithValue("@login", login);
-            cmd.Parameters.AddWithValue("@senha", senha);
-            try
-            {
-                cmd.Connection = conec.Conectar();
-                cmd.ExecuteNonQuery();
-                this.mensagem = "Senha alterada com sucesso";
-                conec.Desconectar();
-                VerificaAcesso = true;
-            }
-            catch (SqlException)
-            {
-
-                this.mensagem = "Erro com o Banco de Dados";
-            }
-        }
-        else
-        {
-            this.mensagem = "Senhas diferentes";
-        }
-
-        return mensagem;
-    }
-}
 }

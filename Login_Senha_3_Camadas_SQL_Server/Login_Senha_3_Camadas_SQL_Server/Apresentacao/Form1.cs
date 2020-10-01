@@ -33,9 +33,7 @@ namespace Login_Senha_3_Camadas_SQL_Server
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            
             Controle controle = new Controle();
-            LoginComandos loginComando = new LoginComandos();
             controle.Acesso(txtLogin.Text, txtSenha.Text);
             if (controle.mensagem.Equals(""))
             {
@@ -43,9 +41,9 @@ namespace Login_Senha_3_Camadas_SQL_Server
                 {
                     MessageBox.Show("Logado com Sucesso", "Entrando", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BemVindo bemvindo = new BemVindo();
-                    Form1 form1 = new Form1();
+                    this.Hide();
                     bemvindo.Show();
-                    bemvindo.lblloginEditar.Text = txtLogin.Text;
+                    bemvindo.lblloginEditar.Text = txtLogin.Text.Substring(0,1).ToUpper() + txtLogin.Text.Substring(1, txtLogin.Text.IndexOf("@")-1);
                     bemvindo.txtLogin.Text = txtLogin.Text;
                     bemvindo.txtSenha.Text = txtSenha.Text;
                     bemvindo.txtConfirmar.Text = txtSenha.Text;

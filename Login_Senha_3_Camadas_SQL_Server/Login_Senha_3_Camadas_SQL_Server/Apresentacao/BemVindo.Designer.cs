@@ -41,6 +41,7 @@
             this.lblloginEditar = new System.Windows.Forms.Label();
             this.lbl_Id_usuario = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.btnDeletar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblBemVindo
@@ -65,11 +66,11 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(355, 188);
+            this.btnEditar.Location = new System.Drawing.Point(384, 188);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(81, 23);
+            this.btnEditar.Size = new System.Drawing.Size(52, 23);
             this.btnEditar.TabIndex = 2;
-            this.btnEditar.Text = "Alterar Senha";
+            this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
@@ -122,7 +123,7 @@
             this.btnSalvar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSalvar.Location = new System.Drawing.Point(137, 266);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(70, 23);
+            this.btnSalvar.Size = new System.Drawing.Size(58, 23);
             this.btnSalvar.TabIndex = 8;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
@@ -142,10 +143,10 @@
             // lblloginEditar
             // 
             this.lblloginEditar.AutoSize = true;
-            this.lblloginEditar.Font = new System.Drawing.Font("Modern No. 20", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblloginEditar.Font = new System.Drawing.Font("Modern No. 20", 18.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblloginEditar.Location = new System.Drawing.Point(311, 50);
             this.lblloginEditar.Name = "lblloginEditar";
-            this.lblloginEditar.Size = new System.Drawing.Size(0, 17);
+            this.lblloginEditar.Size = new System.Drawing.Size(0, 26);
             this.lblloginEditar.TabIndex = 14;
             // 
             // lbl_Id_usuario
@@ -159,20 +160,33 @@
             // btnVoltar
             // 
             this.btnVoltar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnVoltar.Location = new System.Drawing.Point(238, 266);
+            this.btnVoltar.Location = new System.Drawing.Point(257, 266);
             this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(68, 23);
+            this.btnVoltar.Size = new System.Drawing.Size(49, 23);
             this.btnVoltar.TabIndex = 16;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Visible = false;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // btnDeletar
+            // 
+            this.btnDeletar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnDeletar.Location = new System.Drawing.Point(200, 266);
+            this.btnDeletar.Name = "btnDeletar";
+            this.btnDeletar.Size = new System.Drawing.Size(51, 23);
+            this.btnDeletar.TabIndex = 17;
+            this.btnDeletar.Text = "Deletar";
+            this.btnDeletar.UseVisualStyleBackColor = true;
+            this.btnDeletar.Visible = false;
+            this.btnDeletar.Click += new System.EventHandler(this.btnDeletar_Click);
+            // 
             // BemVindo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 352);
+            this.Controls.Add(this.btnDeletar);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.lbl_Id_usuario);
             this.Controls.Add(this.lblloginEditar);
@@ -209,5 +223,6 @@
         public System.Windows.Forms.TextBox txtLogin;
         public System.Windows.Forms.Label lbl_Id_usuario;
         private System.Windows.Forms.Button btnVoltar;
+        private System.Windows.Forms.Button btnDeletar;
     }
 }

@@ -26,18 +26,62 @@ namespace Login_Senha_3_Camadas_SQL_Server.Apresentacao
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            Controle controle = new Controle();
-            string mensagem = controle.Cadastro(txtLogin.Text, txtSenha.Text, txtConfirmar.Text);
-            if (controle.VerificarAcesso)
+            if (txtLogin.Text != "" && txtSenha.Text != "" && txtConfirmar.Text != "" && txtLogin.Text.Contains("@"))
             {
-                MessageBox.Show(mensagem,"Cadastro",MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Cadastrar cadastrar = new Cadastrar();
-                cadastrar.Close();
+                Controle controle = new Controle();
+                LoginComandos loginComandos = new LoginComandos();
+                string mensagem = loginComandos.VerificaCadastro(txtLogin.Text);
+                if (loginComandos.VerificaAcesso == false)
+                {
+                    string mensagem2 = controle.Cadastro(txtLogin.Text, txtSenha.Text, txtConfirmar.Text);
+                    if (controle.VerificarAcesso)
+                    {
+                        this.Close();
+                        MessageBox.Show(mensagem2, "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show(controle.mensagem);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(mensagem, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
             else
             {
-                MessageBox.Show(controle.mensagem);
+                if (txtLogin.Text == "")
+                {
+                    MessageBox.Show("Campo Login vazio", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtLogin.Focus();
+                    return;
+                }
+                if (!txtLogin.Text.Contains("@"))
+                {
+                    MessageBox.Show("Preencha um Email", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtLogin.Focus();
+                    return;
+                }
+                if (txtSenha.Text == "")
+                {
+                    MessageBox.Show("Campo Senha vazio", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtSenha.Focus();
+                    return;
+                }
+                if (txtConfirmar.Text == "")
+                {
+                    MessageBox.Show("Campo Confirmar Senha vazio", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtConfirmar.Focus();
+                    return;
+                }
             }
+        }
+
+        private void txtLogin_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

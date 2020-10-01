@@ -20,7 +20,8 @@ namespace Login_Senha_3_Camadas_SQL_Server.Apresentacao
 
         private void btnSair_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
+            Application.Restart();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -38,6 +39,7 @@ namespace Login_Senha_3_Camadas_SQL_Server.Apresentacao
             btnSalvar.Visible = true;
             btnSalvar.Enabled = true;
             btnVoltar.Visible = true;
+            btnDeletar.Visible = true;
             btnEditar.Enabled = false;
 
         }
@@ -54,9 +56,6 @@ namespace Login_Senha_3_Camadas_SQL_Server.Apresentacao
             {
                 MessageBox.Show(controle.mensagem);
             }
-
-            btnSalvar.Enabled = false;
-
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -73,7 +72,32 @@ namespace Login_Senha_3_Camadas_SQL_Server.Apresentacao
             btnSalvar.Visible = false;
             btnEditar.Enabled = true;
             btnVoltar.Visible = false;
+            btnDeletar.Visible = false;
+        }
 
+        private void btnDeletar_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Tem certeza que deseja deletar?", "Deleção", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+            else
+            {
+                BemVindo bemvindo = new BemVindo();
+                Controle controle = new Controle();
+                string mensagem = controle.Deletar(txtLogin.Text);
+                if (controle.VerificarAcesso)
+                {
+                    MessageBox.Show(mensagem, "Deleção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    bemvindo.Close();
+                    Application.Restart();
+                }
+                else
+                {
+                    MessageBox.Show(controle.mensagem);
+                }
+            }
         }
     }
 }

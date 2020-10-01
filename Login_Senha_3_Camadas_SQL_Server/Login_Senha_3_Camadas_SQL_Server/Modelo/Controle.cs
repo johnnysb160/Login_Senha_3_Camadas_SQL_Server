@@ -40,5 +40,15 @@ namespace Login_Senha_3_Camadas_SQL_Server.Modelo
             }
             return mensagem;
         }
+
+        public string Deletar(string login)
+        {
+            this.mensagem = loginDaoComandos.Deletar(login);
+            if (loginDaoComandos.VerificaAcesso)
+            {
+                this.VerificarAcesso = true;
+            }
+            return mensagem;
+        }
     }
 }
