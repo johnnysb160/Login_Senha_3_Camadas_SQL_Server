@@ -47,13 +47,21 @@ namespace Login_Senha_3_Camadas_SQL_Server.Apresentacao
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             Controle controle = new Controle();
-            string mensagem = controle.Editar(txtLogin.Text, txtSenha.Text, txtConfirmar.Text);
-            if (controle.VerificarAcesso)
+            try
             {
-                MessageBox.Show(mensagem, "Edição", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string mensagem = controle.Editar(txtLogin.Text, txtSenha.Text, txtConfirmar.Text);
+                if (controle.VerificarAcesso)
+                {
+                    MessageBox.Show(mensagem, "Edição", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(controle.mensagem);
+                }
             }
-            else
+            catch (Exception)
             {
+
                 MessageBox.Show(controle.mensagem);
             }
         }
@@ -77,27 +85,39 @@ namespace Login_Senha_3_Camadas_SQL_Server.Apresentacao
 
         private void btnDeletar_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Tem certeza que deseja deletar?", "Deleção", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.No)
+            Controle controle = new Controle();
+            try
             {
-                return;
-            }
-            else
-            {
-                BemVindo bemvindo = new BemVindo();
-                Controle controle = new Controle();
-                string mensagem = controle.Deletar(txtLogin.Text);
-                if (controle.VerificarAcesso)
+                var result = MessageBox.Show("Tem certeza que deseja deletar?", "Deleção", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No)
                 {
-                    MessageBox.Show(mensagem, "Deleção", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    bemvindo.Close();
-                    Application.Restart();
+                    return;
                 }
                 else
                 {
-                    MessageBox.Show(controle.mensagem);
+                    BemVindo bemvindo = new BemVindo();
+                    string mensagem = controle.Deletar(txtLogin.Text);
+                    if (controle.VerificarAcesso)
+                    {
+                        MessageBox.Show(mensagem, "Deleção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        bemvindo.Close();
+                        Application.Restart();
+                    }
+                    else
+                    {
+                        MessageBox.Show(controle.mensagem);
+                    }
                 }
             }
+            catch (Exception)
+            {
+                MessageBox.Show(controle.mensagem);
+            }
+        }
+
+        private void txtLogin_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

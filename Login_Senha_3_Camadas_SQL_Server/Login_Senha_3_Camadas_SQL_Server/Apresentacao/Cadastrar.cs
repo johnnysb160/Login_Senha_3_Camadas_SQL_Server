@@ -23,59 +23,65 @@ namespace Login_Senha_3_Camadas_SQL_Server.Apresentacao
         {
 
         }
-
+        Controle controle = new Controle();
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            if (txtLogin.Text != "" && txtSenha.Text != "" && txtConfirmar.Text != "" && txtLogin.Text.Contains("@"))
+            try
             {
-                Controle controle = new Controle();
-                LoginComandos loginComandos = new LoginComandos();
-                string mensagem = loginComandos.VerificaCadastro(txtLogin.Text);
-                if (loginComandos.VerificaAcesso == false)
+                if (txtLogin.Text != "" && txtSenha.Text != "" && txtConfirmar.Text != "" && txtLogin.Text.Contains("@"))
                 {
-                    string mensagem2 = controle.Cadastro(txtLogin.Text, txtSenha.Text, txtConfirmar.Text);
-                    if (controle.VerificarAcesso)
+                    LoginComandos loginComandos = new LoginComandos();
+                    string mensagem = loginComandos.VerificaCadastro(txtLogin.Text);
+                    if (loginComandos.VerificaAcesso == false)
                     {
-                        this.Close();
-                        MessageBox.Show(mensagem2, "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        string mensagem2 = controle.Cadastro(txtLogin.Text, txtSenha.Text, txtConfirmar.Text);
+                        if (controle.VerificarAcesso)
+                        {
+                            this.Close();
+                            MessageBox.Show(mensagem2, "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show(controle.mensagem);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show(controle.mensagem);
+                        MessageBox.Show(mensagem, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show(mensagem, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    if (txtLogin.Text == "")
+                    {
+                        MessageBox.Show("Campo Login vazio", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtLogin.Focus();
+                        return;
+                    }
+                    if (!txtLogin.Text.Contains("@"))
+                    {
+                        MessageBox.Show("Preencha um Email", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtLogin.Focus();
+                        return;
+                    }
+                    if (txtSenha.Text == "")
+                    {
+                        MessageBox.Show("Campo Senha vazio", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtSenha.Focus();
+                        return;
+                    }
+                    if (txtConfirmar.Text == "")
+                    {
+                        MessageBox.Show("Campo Confirmar Senha vazio", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtConfirmar.Focus();
+                        return;
+                    }
                 }
             }
-            else
+            catch (Exception)
             {
-                if (txtLogin.Text == "")
-                {
-                    MessageBox.Show("Campo Login vazio", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtLogin.Focus();
-                    return;
-                }
-                if (!txtLogin.Text.Contains("@"))
-                {
-                    MessageBox.Show("Preencha um Email", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtLogin.Focus();
-                    return;
-                }
-                if (txtSenha.Text == "")
-                {
-                    MessageBox.Show("Campo Senha vazio", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtSenha.Focus();
-                    return;
-                }
-                if (txtConfirmar.Text == "")
-                {
-                    MessageBox.Show("Campo Confirmar Senha vazio", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtConfirmar.Focus();
-                    return;
-                }
+                MessageBox.Show(controle.mensagem);
             }
         }
 

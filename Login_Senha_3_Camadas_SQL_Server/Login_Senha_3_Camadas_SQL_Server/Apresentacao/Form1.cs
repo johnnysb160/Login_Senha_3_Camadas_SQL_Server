@@ -19,11 +19,20 @@ namespace Login_Senha_3_Camadas_SQL_Server
         {
             InitializeComponent();
         }
-
+        Controle controle = new Controle();
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            Cadastrar cad = new Cadastrar();
-            cad.ShowDialog();
+            try
+            {
+                Cadastrar cad = new Cadastrar();
+                cad.ShowDialog();
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show(controle.mensagem);
+            }
+
         }
         private void btnSair_Click(object sender, EventArgs e)
         {
@@ -32,31 +41,43 @@ namespace Login_Senha_3_Camadas_SQL_Server
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            Controle controle = new Controle();
-            controle.Acesso(txtLogin.Text, txtSenha.Text);
-            if (controle.mensagem.Equals(""))
+            try
             {
-                if (controle.VerificarAcesso)
+                controle.Acesso(txtLogin.Text, txtSenha.Text);
+                if (controle.mensagem.Equals(""))
                 {
-                    MessageBox.Show("Logado com Sucesso", "Entrando", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    BemVindo bemvindo = new BemVindo();
-                    this.Hide();
-                    bemvindo.Show();
-                    bemvindo.lblloginEditar.Text = txtLogin.Text.Substring(0,1).ToUpper() + txtLogin.Text.Substring(1, txtLogin.Text.IndexOf("@")-1);
-                    bemvindo.txtLogin.Text = txtLogin.Text;
-                    bemvindo.txtSenha.Text = txtSenha.Text;
-                    bemvindo.txtConfirmar.Text = txtSenha.Text;
+                    if (controle.VerificarAcesso)
+                    {
+                        MessageBox.Show("Logado com Sucesso", "Entrando", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        BemVindo bemvindo = new BemVindo();
+                        this.Hide();
+                        bemvindo.Show();
+                        bemvindo.lblloginEditar.Text = txtLogin.Text.Substring(0, 1).ToUpper() + txtLogin.Text.Substring(1, txtLogin.Text.IndexOf("@") - 1);
+                        bemvindo.txtLogin.Text = txtLogin.Text;
+                        bemvindo.txtSenha.Text = txtSenha.Text;
+                        bemvindo.txtConfirmar.Text = txtSenha.Text;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Login ou senha incorreto", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Login ou senha incorreto", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    MessageBox.Show(controle.mensagem);
                 }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show(controle.mensagem);
+
+                MessageBox.Show(controle.mensagem); ;
             }
+        }
+
+        private void txtLogin_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

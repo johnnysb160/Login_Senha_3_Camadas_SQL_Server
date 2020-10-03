@@ -14,10 +14,18 @@ namespace Login_Senha_3_Camadas_SQL_Server.Modelo
         LoginComandos loginDaoComandos = new LoginComandos();
         public bool Acesso(string login, string senha)
         {
+            
             VerificarAcesso = loginDaoComandos.VerificarLogin(login, senha);
-            if (!loginDaoComandos.mensagem.Equals(""))
+            try
             {
-                this.mensagem = loginDaoComandos.mensagem;
+                if (!loginDaoComandos.mensagem.Equals(""))
+                {
+                    this.mensagem = loginDaoComandos.mensagem;
+                }
+            }
+            catch (Exception e)
+            {
+                this.mensagem = "Error" + e.Message;
             }
             return VerificarAcesso;
         }
@@ -25,18 +33,34 @@ namespace Login_Senha_3_Camadas_SQL_Server.Modelo
         public string Cadastro(string login, string senha, string confSenha)
         {
             this.mensagem = loginDaoComandos.Cadastrar(login, senha, confSenha);
-            if (loginDaoComandos.VerificaAcesso)
+            try
             {
-                this.VerificarAcesso = true;
+                if (loginDaoComandos.VerificaAcesso)
+                {
+                    this.VerificarAcesso = true;
+                }
+            }
+            catch (Exception e)
+            {
+                this.mensagem = "Error" + e.Message;
             }
             return mensagem;
         }
+
+
         public string Editar(string login, string senha, string confSenha)
         {
             this.mensagem = loginDaoComandos.Editar(login, senha, confSenha);
-            if (loginDaoComandos.VerificaAcesso)
+            try
             {
-                this.VerificarAcesso = true;
+                if (loginDaoComandos.VerificaAcesso)
+                {
+                    this.VerificarAcesso = true;
+                }
+            }
+            catch (Exception e)
+            {
+                this.mensagem = "Error" + e.Message;
             }
             return mensagem;
         }
@@ -44,9 +68,16 @@ namespace Login_Senha_3_Camadas_SQL_Server.Modelo
         public string Deletar(string login)
         {
             this.mensagem = loginDaoComandos.Deletar(login);
-            if (loginDaoComandos.VerificaAcesso)
+            try
             {
-                this.VerificarAcesso = true;
+                if (loginDaoComandos.VerificaAcesso)
+                {
+                    this.VerificarAcesso = true;
+                }
+            }
+            catch (Exception e)
+            {
+                this.mensagem = "Error" + e.Message;
             }
             return mensagem;
         }
