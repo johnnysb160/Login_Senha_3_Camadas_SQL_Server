@@ -9,7 +9,7 @@ namespace Login_Senha_3_Camadas_SQL_Server.DAL
 {
     class Conexao
     {
-        SqlConnection con = new SqlConnection();
+        public SqlConnection con = new SqlConnection();
         public string mensagem = "";
         public Conexao()
         {

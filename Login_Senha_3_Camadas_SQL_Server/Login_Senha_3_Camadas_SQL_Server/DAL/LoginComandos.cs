@@ -18,12 +18,14 @@ namespace Login_Senha_3_Camadas_SQL_Server.DAL
         SqlDataReader dr;
         public bool VerificarLogin(string login, string senha)
         {
-            cmd.CommandText = "SELECT * FROM logins WHERE login=@login AND senha=@senha";
-            cmd.Parameters.AddWithValue("@login", login);
-            cmd.Parameters.AddWithValue("@senha", senha);
             try
             {
                 cmd.Connection = conec.Conectar();
+                cmd = new SqlCommand("Proc_CRUD", conec.con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@Acao", SqlDbType.Int).Value = 4;
+                cmd.Parameters.Add("@login", SqlDbType.VarChar).Value = login;
+                cmd.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
@@ -47,10 +49,12 @@ namespace Login_Senha_3_Camadas_SQL_Server.DAL
             {
                 if (senha.Equals(confSenha))
                 {
-                    cmd.CommandText = "INSERT INTO logins (login, senha) VALUES (@login, @senha)";
-                    cmd.Parameters.AddWithValue("@login", login);
-                    cmd.Parameters.AddWithValue("@senha", senha);
                     cmd.Connection = conec.Conectar();
+                    cmd = new SqlCommand("Proc_CRUD", conec.con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@Acao", SqlDbType.Int).Value = 1;
+                    cmd.Parameters.Add("@login", SqlDbType.VarChar).Value = login;
+                    cmd.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
                     cmd.ExecuteNonQuery();
                     this.mensagem = "Cadastrado com sucesso";
                     conec.Desconectar();
@@ -73,11 +77,13 @@ namespace Login_Senha_3_Camadas_SQL_Server.DAL
         public string VerificaCadastro(string login)
         {
             VerificaAcesso = false;
-            cmd.CommandText = "SELECT * FROM logins WHERE login=@login";
-            cmd.Parameters.AddWithValue("@login", login);
             try
             {
                 cmd.Connection = conec.Conectar();
+                cmd = new SqlCommand("Proc_CRUD", conec.con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@Acao", SqlDbType.Int).Value = 3;
+                cmd.Parameters.Add("@login", SqlDbType.VarChar).Value = login;
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
@@ -102,10 +108,12 @@ namespace Login_Senha_3_Camadas_SQL_Server.DAL
             {
                 if (senha.Equals(confSenha))
                 {
-                    cmd.CommandText = "UPDATE logins SET senha=@senha WHERE login=@login";
-                    cmd.Parameters.AddWithValue("@login", login);
-                    cmd.Parameters.AddWithValue("@senha", senha);
                     cmd.Connection = conec.Conectar();
+                    cmd = new SqlCommand("Proc_CRUD", conec.con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@Acao", SqlDbType.Int).Value = 2;
+                    cmd.Parameters.Add("@login", SqlDbType.VarChar).Value = login;
+                    cmd.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
                     cmd.ExecuteNonQuery();
                     this.mensagem = "Senha alterada com sucesso";
                     conec.Desconectar();
@@ -126,11 +134,13 @@ namespace Login_Senha_3_Camadas_SQL_Server.DAL
 
         public string Deletar(string login)
         {
-            cmd.CommandText = "DELETE FROM logins WHERE login=@login";
-            cmd.Parameters.AddWithValue("@login", login);
             try
             {
                 cmd.Connection = conec.Conectar();
+                cmd = new SqlCommand("Proc_CRUD", conec.con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@Acao", SqlDbType.Int).Value = 0;
+                cmd.Parameters.Add("@login", SqlDbType.VarChar).Value = login;
                 cmd.ExecuteNonQuery();
                 this.mensagem = "Usuário deletado com sucesso";
                 conec.Desconectar();
