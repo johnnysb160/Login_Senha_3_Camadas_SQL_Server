@@ -68,6 +68,14 @@
     <Compile Include="DAL\LoginComandos.cs" />
     <Compile Include="Modelo\Controle.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProjetoLoginDataSet.cs">
+      <DependentUpon>ProjetoLoginDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ProjetoLoginDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjetoLoginDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Apresentacao\BemVindo.resx">
       <DependentUpon>BemVindo.cs</DependentUpon>
@@ -87,6 +95,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ProjetoLoginDataSet.xsc">
+      <DependentUpon>ProjetoLoginDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjetoLoginDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProjetoLoginDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ProjetoLoginDataSet.xss">
+      <DependentUpon>ProjetoLoginDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
