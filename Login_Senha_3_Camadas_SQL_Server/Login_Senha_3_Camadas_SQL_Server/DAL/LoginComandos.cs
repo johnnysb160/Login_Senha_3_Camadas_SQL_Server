@@ -23,7 +23,7 @@ namespace Login_Senha_3_Camadas_SQL_Server.DAL
                 cmd.Connection = conec.Conectar();
                 cmd = new SqlCommand("Proc_CRUD", conec.con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Acao", SqlDbType.Int).Value = 4;
+                cmd.Parameters.Add("@Acao", SqlDbType.VarChar).Value = "VerificarLogin";
                 cmd.Parameters.Add("@login", SqlDbType.VarChar).Value = login;
                 cmd.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
                 dr = cmd.ExecuteReader();
@@ -52,7 +52,7 @@ namespace Login_Senha_3_Camadas_SQL_Server.DAL
                     cmd.Connection = conec.Conectar();
                     cmd = new SqlCommand("Proc_CRUD", conec.con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@Acao", SqlDbType.Int).Value = 1;
+                    cmd.Parameters.Add("@Acao", SqlDbType.VarChar).Value = "Cadastrar";
                     cmd.Parameters.Add("@login", SqlDbType.VarChar).Value = login;
                     cmd.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
                     cmd.ExecuteNonQuery();
@@ -82,7 +82,7 @@ namespace Login_Senha_3_Camadas_SQL_Server.DAL
                 cmd.Connection = conec.Conectar();
                 cmd = new SqlCommand("Proc_CRUD", conec.con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Acao", SqlDbType.Int).Value = 3;
+                cmd.Parameters.Add("@Acao", SqlDbType.VarChar).Value = "VerificaCadastro";
                 cmd.Parameters.Add("@login", SqlDbType.VarChar).Value = login;
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)
@@ -111,7 +111,7 @@ namespace Login_Senha_3_Camadas_SQL_Server.DAL
                     cmd.Connection = conec.Conectar();
                     cmd = new SqlCommand("Proc_CRUD", conec.con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@Acao", SqlDbType.Int).Value = 2;
+                    cmd.Parameters.Add("@Acao", SqlDbType.VarChar).Value = "Editar";
                     cmd.Parameters.Add("@login", SqlDbType.VarChar).Value = login;
                     cmd.Parameters.Add("@senha", SqlDbType.VarChar).Value = senha;
                     cmd.ExecuteNonQuery();
@@ -139,7 +139,7 @@ namespace Login_Senha_3_Camadas_SQL_Server.DAL
                 cmd.Connection = conec.Conectar();
                 cmd = new SqlCommand("Proc_CRUD", conec.con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Acao", SqlDbType.Int).Value = 0;
+                cmd.Parameters.Add("@Acao", SqlDbType.VarChar).Value = "Deletar";
                 cmd.Parameters.Add("@login", SqlDbType.VarChar).Value = login;
                 cmd.ExecuteNonQuery();
                 this.mensagem = "Usuário deletado com sucesso";
