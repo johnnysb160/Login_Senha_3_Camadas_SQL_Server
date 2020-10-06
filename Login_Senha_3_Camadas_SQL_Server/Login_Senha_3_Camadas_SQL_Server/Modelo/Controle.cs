@@ -10,14 +10,14 @@ namespace Login_Senha_3_Camadas_SQL_Server.Modelo
     public class Controle
     {
         public bool VerificarAcesso;
-        public string mensagem="";
+        public string mensagem = "";
         LoginComandos loginDaoComandos = new LoginComandos();
         public bool Acesso(string login, string senha)
         {
-            
-            VerificarAcesso = loginDaoComandos.VerificarLogin(login, senha);
             try
             {
+                VerificarAcesso = loginDaoComandos.VerificarLogin(login, senha);
+
                 if (!loginDaoComandos.mensagem.Equals(""))
                 {
                     this.mensagem = loginDaoComandos.mensagem;
@@ -32,9 +32,9 @@ namespace Login_Senha_3_Camadas_SQL_Server.Modelo
 
         public string Cadastro(string login, string senha, string confSenha)
         {
-            this.mensagem = loginDaoComandos.Cadastrar(login, senha, confSenha);
             try
             {
+                this.mensagem = loginDaoComandos.Cadastrar(login, senha, confSenha);
                 if (loginDaoComandos.VerificaAcesso)
                 {
                     this.VerificarAcesso = true;
@@ -50,9 +50,9 @@ namespace Login_Senha_3_Camadas_SQL_Server.Modelo
 
         public string Editar(string login, string senha, string confSenha)
         {
-            this.mensagem = loginDaoComandos.Editar(login, senha, confSenha);
             try
             {
+                this.mensagem = loginDaoComandos.Editar(login, senha, confSenha);
                 if (loginDaoComandos.VerificaAcesso)
                 {
                     this.VerificarAcesso = true;
@@ -67,9 +67,9 @@ namespace Login_Senha_3_Camadas_SQL_Server.Modelo
 
         public string Deletar(string login)
         {
-            this.mensagem = loginDaoComandos.Deletar(login);
             try
             {
+                this.mensagem = loginDaoComandos.Deletar(login);
                 if (loginDaoComandos.VerificaAcesso)
                 {
                     this.VerificarAcesso = true;
